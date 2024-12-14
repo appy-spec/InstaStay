@@ -5,6 +5,10 @@ const mongoose=require("mongoose");
 const Listing=require("./modals/model.js");
 const methodoverride=require("method-override");
 const ejsmate=require("ejs-mate");
+const ExpressError=require("./utils/ExpressError.js");
+const wrapAsync= require("./utils/wrapAsync.js");
+const Joi= require("joi");
+const listingSchema=require("./validateSchema.js");
 
 const app=express();
 const port=3000;
@@ -35,58 +39,72 @@ async function main() {
 
 };
 
+const validateListing=((req, res, next)=>{
+
+    let{error}=listingSchema.validate(req.body);
+
+    if(error){
+
+        throw new ExpressError(400, error);
+    }
+    else{
+
+        next();
+    }
+
+});
+
 app.get("/", (req,res)=>{
 
     res.send("this is trail page");
 });
 
-app.get("/listings", async(req,res)=>{
+app.get("/listings", wrapAsync(async(req,res, next)=>{
     
     let allListing=await Listing.find({});
     res.render("listings/index.ejs", {allListing});
-});
+}));
 
 app.get("/listings/new", (req,res)=>{
 
     res.render("listings/new.ejs");
 });
 
-app.post("/listings", (req,res)=>{
+app.post("/listings", validateListing, (req,res, next)=>{
 
     let{newlisting}=req.body;
-
     let addlisting=new Listing(newlisting);
     addlisting.save().then(()=>{
 
         console.log("saved successfully!!!!");
     }).catch((err)=>{
 
-        console.log(err);
+        next(err);
     });
 
     res.redirect("/listings");
 
 });
 
-app.get("/listings/:id", async(req,res)=>{
+app.get("/listings/:id", wrapAsync(async(req,res, next)=>{
 
     let{id}=req.params;
 
     let listing=await Listing.findById(id);
     res.render("listings/show.ejs", {listing});
 
-});
+}));
 
-app.get("/listings/:id/edit", async(req,res)=>{
+app.get("/listings/:id/edit", wrapAsync(async(req,res)=>{
 
     let{id}=req.params;
     
     let listing=await Listing.findById(id);
     res.render("listings/edit.ejs", {listing});
 
-});
+}));
 
-app.put("/listings/:id", async(req,res)=>{
+app.put("/listings/:id", validateListing, wrapAsync(async(req,res)=>{
 
     let{id}=req.params;
     let{newlisting}=req.body;
@@ -94,9 +112,9 @@ app.put("/listings/:id", async(req,res)=>{
     await Listing.findByIdAndUpdate(id,{...newlisting},{ runValidators: true });
     res.redirect("/listings");
     
-});
+}));
 
-app.delete("/listings/:id", async(req,res)=>{
+app.delete("/listings/:id", wrapAsync(async(req,res)=>{
 
     let {id}=req.params;
 
@@ -105,7 +123,22 @@ app.delete("/listings/:id", async(req,res)=>{
 
     res.redirect("/listings");
 
+}));
+
+app.all("*", (req,res, next)=>{
+
+    next(new ExpressError(400, "Page not found!!"));
+
 });
+
+app.use((err, req, res, next)=>{
+
+    let{statusCode=500, message="something went wrong"}=err;
+
+    res.render("listings/error.ejs", {message});
+});
+
+
 
 
 
