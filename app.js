@@ -3,12 +3,13 @@ const ejs=require("ejs");
 const path=require("path");
 const mongoose=require("mongoose");
 const Listing=require("./modals/model.js");
+const Review=require("./modals/review.js");
 const methodoverride=require("method-override");
 const ejsmate=require("ejs-mate");
 const ExpressError=require("./utils/ExpressError.js");
 const wrapAsync= require("./utils/wrapAsync.js");
 const Joi= require("joi");
-const listingSchema=require("./validateSchema.js");
+const {listingSchema, reviewSchema} =require("./validateSchema.js");
 
 const app=express();
 const port=3000;
@@ -54,16 +55,35 @@ const validateListing=((req, res, next)=>{
 
 });
 
+const validateReview=((req, res, next)=>{
+
+    let{error}=reviewSchema.validate(req.body);
+
+    if(error){
+       
+        throw new ExpressError(400, error);
+    }
+    else{
+
+        next();
+    }
+
+});
+
 app.get("/", (req,res)=>{
 
     res.send("this is trail page");
 });
+
+// view all listing route
 
 app.get("/listings", wrapAsync(async(req,res, next)=>{
     
     let allListing=await Listing.find({});
     res.render("listings/index.ejs", {allListing});
 }));
+
+// new listing add route
 
 app.get("/listings/new", (req,res)=>{
 
@@ -86,14 +106,18 @@ app.post("/listings", validateListing, (req,res, next)=>{
 
 });
 
+// particular listing view route
+
 app.get("/listings/:id", wrapAsync(async(req,res, next)=>{
 
     let{id}=req.params;
 
-    let listing=await Listing.findById(id);
+    let listing=await Listing.findById(id).populate("reviews");
     res.render("listings/show.ejs", {listing});
 
 }));
+
+// listing update route
 
 app.get("/listings/:id/edit", wrapAsync(async(req,res)=>{
 
@@ -114,6 +138,8 @@ app.put("/listings/:id", validateListing, wrapAsync(async(req,res)=>{
     
 }));
 
+// listing delete route
+
 app.delete("/listings/:id", wrapAsync(async(req,res)=>{
 
     let {id}=req.params;
@@ -124,6 +150,37 @@ app.delete("/listings/:id", wrapAsync(async(req,res)=>{
     res.redirect("/listings");
 
 }));
+
+// new reviews add route
+
+app.post("/listings/:id/reviews",validateReview, wrapAsync(async(req, res, next)=>{
+
+    let{id}=req.params;
+    let{review}=req.body;
+    let listing= await Listing.findById(id);
+    let addReview=new Review(review);
+
+    listing.reviews.push(addReview);
+    await addReview.save();
+    await listing.save();
+
+    res.redirect(`/listings/${id}`);
+}));
+
+// delete reviews route
+
+app.delete("/listings/:id/reviews/:reviewId", async(req, res, next)=>{
+
+    let{id,reviewId}=req.params;
+
+    await Listing.findByIdAndUpdate(id,{$pull:{reviews:reviewId}});
+    await Review.findByIdAndDelete(reviewId);
+
+    res.redirect(`/listings/${id}`);
+
+});
+
+// error handling route
 
 app.all("*", (req,res, next)=>{
 
@@ -137,6 +194,8 @@ app.use((err, req, res, next)=>{
 
     res.render("listings/error.ejs", {message});
 });
+
+
 
 
 
