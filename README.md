@@ -6,17 +6,19 @@ This project is an Airbnb clone built using the MERN stack (MongoDB, Express.js,
 
 ### Homepage
 
-Here are two screenshots of the homepage:
-
 ![Homepage Screenshot](screenshots/homepage.png)
 
-![Homepage Screenshot](screenshots/homepage2.png)
-
 ### Add new Listing Page
-![Listing Screenshot](screenshots/addnewlisting.png)
+![Add Listing Screenshot](screenshots/addnewlisting.png)
 
 ### Login Page
 ![Login Screenshot](screenshots/login.png)
+
+### Show listing
+![show Screenshot](screenshots/showlisting.png)
+
+### Show location
+![show Screenshot](screenshots/showlocation.png)
 
 ## Prerequisites
 
