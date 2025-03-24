@@ -32,24 +32,24 @@ Before you begin, ensure you have the following installed on your system:
 
 ### **MVC (Model-View-Controller) Architecture**
 
-The application follows the **MVC** design pattern to separate the logic into three core components:
-
-- **Model**: Handles data and business logic, interacting with the database (MongoDB). Includes models like `User`, `Review`, and `Property`.
-- **View**: The user interface (UI) is managed by **app.js**, which interacts with the backend through API calls to display data dynamically.
-- **Controller**: Manages the business logic by interacting with models and sending appropriate responses to the view. The controllers manage user registration, login, reviews, property management, and sessions.
+- **Model**: Handles data and business logic, interacting with MongoDB. It includes models like `User`, `Review`, and `Property`.
+- **View**: The user interface is managed by `App.js`, which fetches data through API calls and displays it dynamically.
+- **Controller**: Manages business logic by interacting with the models. It handles user registration, login, reviews, property management, and sessions.
 
 ### **One-to-Many Relationship (Users and Reviews)**
 
-In this app, there is a **one-to-many relationship** between **users** and **reviews**. A user can leave multiple reviews for properties, but each review is linked to exactly one user. This relationship is implemented using **MongoDB**'s ObjectId reference.
-
-- **User Model**: Stores user-related data and references reviews they have written.
-- **Review Model**: Stores review data with a reference to the user and the property being reviewed.
+- **User Model**: Stores user data and references the reviews they have written.
+- **Review Model**: Contains review data, including the reference to the user and the property being reviewed. Each user can leave multiple reviews.
 
 ### **Sessions and Cookies for Authentication**
 
-Sessions and cookies are used for **user authentication**. Upon login, a session is created and stored on the server. The session ID is sent as a cookie, ensuring that users remain logged in across different requests. The authentication system ensures secure access to protected routes like submitting reviews or managing user profiles.
+- **Session**: On login, a session is created and stored on the server, ensuring users remain logged in across requests.
+- **Cookies**: The session ID is stored in a cookie, enabling persistent authentication for users across page reloads.
 
 ### **Mapbox Integration for Location Display**
 
-**Mapbox** is integrated to show interactive maps with location markers for properties. This feature allows users to visualize property locations on the map, improving the user experience by providing geographical context to property listings.
+- **Mapbox** is integrated to display interactive maps with location markers for properties. Users can visualize property locations on the map for a better experience.
 
+---
+
+This project demonstrates core concepts like **MVC architecture**, **one-to-many relationships**, **user authentication** using sessions and cookies, and **Mapbox integration** for map-based property location display.
