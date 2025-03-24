@@ -1,0 +1,148 @@
+body{
+
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    min-width: 100vw;
+}
+
+.container{
+
+    flex:1;
+}
+/* style for nav bar */
+
+.navbar{
+
+    background-color:white;
+}
+
+.fa-compass{
+
+    font-size: 2rem;
+    color: #fe424d;
+}
+
+.nav-link{
+
+    color:black !important;
+    font-weight: 100;
+}
+
+
+/*style for footer */
+
+.f-info-icon{
+    
+    text-align: center;
+    justify-content: center;
+    background-color: #ebebeb;
+    align-items: center;
+    flex-wrap: wrap;
+    align-items: stretch;
+    margin-top: 1.3rem;
+}
+
+.f-info-social .f-info-link{
+    
+    width:100%;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.f-info-social{
+
+    font-size: 1.5rem;
+}
+
+.f-info-link a{
+
+    text-decoration: none;
+    color: #222222;
+}
+
+.f-info-link :hover{
+
+    text-decoration: underline;
+}
+
+/* style for index */
+
+.listing-card{
+
+    border:none !important;
+    margin-bottom: 1.5rem;
+}
+
+.card-img-top{
+
+    border-radius: 1rem !important;
+    width:100% !important;
+    object-fit: cover !important;
+}
+
+.card-body{
+
+    padding: 0% !important;
+}
+
+.card-text{
+
+    font-weight: 400;
+    margin-bottom: 0% !important;
+
+}
+
+.link-text{
+
+    text-decoration: none;
+}
+
+.card-img-overlay{
+
+    opacity:0;
+}
+
+.card-img-overlay:hover{
+
+    opacity: 0.2 !important;
+    background-color: white !important;
+}
+
+/* new-form.ejs style */
+
+.form-label{
+
+   margin:0% !important;
+}
+
+.button-design{
+
+    border:none !important;
+    background-color: #fe424d !important;
+    color: white !important;
+}
+
+/* show.ejs file */
+
+.show-img{
+
+    height:30vh;
+    border-radius: 0.8rem;
+}
+
+.show-edit-button{
+
+    margin-right: 2rem !important;
+}
+
+/* style for map */
+
+#map { 
+   
+    height:400px;
+    width:600px;
+}
+

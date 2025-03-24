@@ -1,0 +1,57 @@
+<% layout("/layouts/boilerplates.ejs") %>
+
+    <div class="row">
+      <div class="col-8 offset-2">
+        <h3>Create new listing:</h3>
+        <form method="POST" action="/listings"  class="needs-validation" enctype="multipart/form-data" novalidate >
+            
+            <div class="mb-3">
+              <label for="newlisting[title]" class="form-label">Title:</label>
+              <input id="newlisting[title]" name="newlisting[title]" type="text" 
+              placeholder="add a title" class="form-control" required>
+              <div class="valid-feedback">
+                Looks good!!
+              </div>
+            </div>
+            <div class="mb-3">
+              <label for="newlisting[description]" class="form-label">Description:</label><br>
+              <textarea id="newlisting[description]" name="newlisting[description]" type="text"
+              placeholder="add a description" 
+              class="form-control" required></textarea>
+              <div class="invalid-feedback">
+                Add a description
+              </div>
+            </div>
+            <div class="mb-3"> 
+              <label for="newlisting[image]" class="form-label">Upload Img:</label>
+              <input id="newlisting[image]" name="newlisting[image]" type="file" 
+              placeholder="give img url"  class="form-control">
+            </div>
+            <div class="mb-3">
+              <label for="newlisting[price]" class="form-label">Price:</label>
+              <input id="newlisting[price]" name="newlisting[price]" type="number" placeholder="Ex-1200" 
+              class="form-control" min="0" required>
+              <div class="invalid-feedback">
+                Invalid price
+              </div>
+            </div>
+            <div class="mb-3">
+              <label for="newlisting[location]" class="form-label">Location:</label>
+              <input id="newlisting[location]" name="newlisting[location]" type="text" 
+              class="form-control" placeholder="add a location" required>
+              <div class="invalid-feedback">
+                Invalid location
+              </div>
+            </div>
+            <div class="mb-3">
+              <label for="newlisting[country]" class="form-label">Country:</label>
+              <input id="newlisting[country]" name="newlisting[country]" type="text" 
+              class="form-control" placeholder="add a country" required>
+              <div class="invalid-feedback">
+                Invalid country name
+              </div>
+            </div>
+            <button class="btn button-design">Add</button>
+        </form> 
+      </div>     
+    </div>
