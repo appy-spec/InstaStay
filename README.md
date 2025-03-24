@@ -10,7 +10,7 @@ Here are two screenshots of the homepage:
 
 ![Homepage Screenshot](screenshots/homepage.png)
 
-![Homepage Screenshot](screenshots/homepage2.png)
+![Homepage Screenshot](screenshots/homepage(2).png)
 
 ### Add new Listing Page
 ![Listing Screenshot](screenshots/addnewlisting.png)
