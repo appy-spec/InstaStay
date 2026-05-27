@@ -124,8 +124,8 @@ app.use("/listings/:id/reviews", reviewRouter);
 app.use("/", userRouter); 
 
 app.get("/", (req,res)=>{
-
-    res.send("this is trail page");
+    
+    res.render("./listings/home.ejs");
 });
 
 // error handling route
