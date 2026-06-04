@@ -1,6 +1,6 @@
 # InstaStay-MERN Stack
 
-This project is an accomodation platform built using the MERN stack (MongoDB, Express.js, React.js, Node.js). Below are some screenshots of the application.
+This project is an accommodation platform built using the MERN stack (MongoDB, Express.js, React.js, Node.js). Below are some screenshots of the application.
 
 ## Prerequisites
 
