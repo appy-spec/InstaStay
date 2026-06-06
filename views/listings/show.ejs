@@ -1,5 +1,76 @@
 <% layout("/layouts/boilerplates.ejs")%>
 
+   <style>
+      /* Mobile & Tablet Responsive Fixes */
+      @media (max-width: 1100px) {
+
+         .offset-3,
+         .offset-3.mt-2,
+         .card.listing-card.col-5.offset-3,
+         .col-6.offset-3 {
+            width: 95% !important;
+            margin-left: auto !important;
+            margin-right: auto !important;
+            padding-left: 10px;
+            padding-right: 10px;
+         }
+
+         .listing-card {
+            width: 100% !important;
+         }
+
+         .show-img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+         }
+
+         textarea.form-control {
+            width: 100%;
+         }
+
+         .row.row-col-sm-1 .col-5.card {
+            width: 100% !important;
+            margin-left: 0 !important;
+         }
+
+         #map {
+            width: 100% !important;
+         }
+
+         .offset-3[style*="display: flex"] {
+            flex-wrap: wrap;
+            gap: 10px;
+         }
+
+         .offset-3[style*="display: flex"] form {
+            width: 100%;
+         }
+
+         .offset-3[style*="display: flex"] button {
+            width: 100%;
+         }
+      }
+
+      @media (max-width: 1100px) {
+
+         h3,
+         h4,
+         h5 {
+            word-break: break-word;
+         }
+
+         .card-body {
+            padding: 1rem;
+         }
+
+         .starability-basic {
+            overflow-x: auto;
+         }
+      }
+      
+   </style>
+
    <script>
       let mapToken="<%=process.env.MAP_TOKEN%>";
       let listing=<%- JSON.stringify(listing)%>
