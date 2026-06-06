@@ -8,7 +8,7 @@
          .offset-3.mt-2,
          .card.listing-card.col-5.offset-3,
          .col-6.offset-3 {
-            width: 95% !important;
+            width: 75% !important;
             margin-left: auto !important;
             margin-right: auto !important;
             padding-left: 10px;
@@ -92,17 +92,17 @@
                   <%=listing.country%>
                </div>
          </div>
-         <div class="offset-3" style="display: flex;" style="margin-top: 17px;">
+         <div class="offset-3" style="display: inline-flex; gap: 0px; margin-top: 17px;">
             
             <% if(currUser && listing.owner.equals(currUser._id)){%>
    
                <form method="GET" action="/listings/<%=listing._id%>/edit/">
-                  <button class="btn button-design show-edit-button">Edit</button>
+                  <button class="btn button-design show-edit-button" style="max-width: fit-content;">Edit</button>
             
                </form>
                <form method="POST" action="/listings/<%=listing._id%>?_method=DELETE">
 
-                  <button class="btn button-design">Delete</button>
+                  <button class="btn button-design" style="max-width: fit-content;">Delete</button>
                </form>
                
             <%}%>    
@@ -154,7 +154,7 @@
                <div class="row row-col-sm-1">
                <% for(review of listing.reviews){%>
                      
-                  <div class="col-5 card ms-2 mb-3">
+                  <div class="col-5 card ms-2 mb-3" style="padding-top: 10px;">
                      <div class="card-body">
                         <h6 class="card-title">@<%=review.author.username%></h6>
                         <p class="starability-result" data-rating="<%=review.rating%>"></p>
