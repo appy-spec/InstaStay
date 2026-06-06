@@ -1,32 +1,50 @@
 <% layout("/layouts/boilerplates.ejs") %>
 
-    <div class="row">
-      <div class="col-12 col-sm-10 col-md-8 col-lg-5 mx-auto">
-        <h3>Signup on InstaStay !!</h3>
-        <form method="POST" action="/signup" class="needs-validation" novalidate>
-            
-            <div class="mb-3">
-              <label for="username" class="form-label">Username</label>
-              <input id="username" name="username" type="text" 
-               class="form-control" required>
-              <div class="valid-feedback">
-                Looks good!!
-              </div>
-            </div>
-            <div class="mb-3">
-              <label for="email" class="form-label">Email</label><br>
-              <input id="email" name="email" type="text" 
-              class="form-control" required>
-            </div>
-            <div class="mb-3"> 
-              <label for="password" class="form-label">Password</label>
-              <input id="password" name="password" type="text" 
-               class="form-control" required>
-            </div>
-            
-            <button class="btn btn-success">Signup</button>
+<style>
+  @media (max-width: 575.75px) {
+    .form-container {
+      width: 82%;
+    }
+  }
+</style>
 
-        </form>
-        
+<div class="row">
+  <div class="col-12 col-sm-10 col-md-8 col-lg-5 mx-auto form-container">
+    <h3>Signup on InstaStay !!</h3>
+    <form method="POST" action="/signup" class="needs-validation" novalidate>
+      <div class="mb-3">
+        <label for="username" class="form-label">Username</label>
+        <input
+          id="username"
+          name="username"
+          type="text"
+          class="form-control"
+          required
+        />
+        <div class="valid-feedback">Looks good!!</div>
       </div>
-    </div>    
+      <div class="mb-3">
+        <label for="email" class="form-label">Email</label><br />
+        <input
+          id="email"
+          name="email"
+          type="text"
+          class="form-control"
+          required
+        />
+      </div>
+      <div class="mb-3">
+        <label for="password" class="form-label">Password</label>
+        <input
+          id="password"
+          name="password"
+          type="text"
+          class="form-control"
+          required
+        />
+      </div>
+
+      <button class="btn btn-success">Signup</button>
+    </form>
+  </div>
+</div>

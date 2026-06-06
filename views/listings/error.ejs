@@ -1,7 +1,15 @@
 <% layout("/layouts/boilerplates.ejs") %>
 
+<style>
+    @media (max-width: 575.75px) {
+      .form-container {
+        width: 82%;
+      }
+    }
+  </style>
+
 <div class="row"></div>
-  <div class="col-6 offset-3 mt-2">  
+  <div class="col-12 col-sm-10 col-md-8 col-lg-5 mx-auto form-container">  
     <div class="alert alert-danger" role="alert">
       <%=message%>
     </div>
