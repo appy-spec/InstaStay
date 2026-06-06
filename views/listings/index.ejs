@@ -42,10 +42,10 @@
     padding: 0.9rem;
     display: flex;
     align-items: center;
-    margin-left: 2.3rem;
+    margin-left: 0;
   }
 
- @media (max-width: 575.98px) {
+  @media (max-width: 575.98px) {
     .container{
       padding-right: 1.3rem;
       padding-left: 1rem;
@@ -54,6 +54,95 @@
     .row{
       display: flex;
       flex-direction: column;
+    }
+  }
+
+  /* fix the filters and toggle switch to the top of the page */
+
+  @media (max-width: 1100px){
+    
+  #filters{
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    overflow-x: auto;
+    white-space: nowrap;
+    padding: 0.5rem 0;
+    scrollbar-width: none;
+  }
+
+  #filters::-webkit-scrollbar{
+    display: none;
+  }
+
+  .filter{
+    text-align: center;
+    opacity: 0.7;
+    min-width: 80px;
+    flex-shrink: 0;
+    cursor: pointer;
+  }
+
+  .filter:hover{
+    opacity: 1;
+  }
+
+  .filter p{
+    font-size: 0.8rem;
+    margin-top: 0.25rem;
+    margin-bottom: 0;
+  }
+
+  .toggle-taxes{
+    flex-shrink: 0;
+    border: 1px solid #ddd;
+    border-radius: 1rem;
+    padding: 0.75rem 1rem;
+    padding-left: 15px !important;
+  }
+
+}
+
+  /* Tablet */
+  @media (max-width: 992px){
+    .toggle-taxes{
+      padding: 0.5rem 0.75rem;
+    }
+  }
+
+  /* Mobile */
+  @media (max-width: 768px){
+
+    #filters{
+      padding-bottom: 0.5rem;
+    }
+
+    .filter{
+      min-width: 70px;
+    }
+
+    .filter i{
+      font-size: 1rem;
+    }
+
+    .filter p{
+      font-size: 0.75rem;
+    }
+
+    .toggle-taxes{
+      min-width: fit-content;
+    }
+  }
+
+  /* Very Small Devices */
+  @media (max-width: 576px){
+
+    .filter{
+      min-width: 60px;
+    }
+
+    .toggle-taxes label{
+      font-size: 0.8rem;
     }
   }
 
